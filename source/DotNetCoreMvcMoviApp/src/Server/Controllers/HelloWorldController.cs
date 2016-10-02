@@ -12,13 +12,24 @@ namespace Server.Controllers
     public class HelloWorldController : Controller
     {
         
-        public string Index()
+        public IActionResult Index()
         {
-            return "This is my default action...";
+
+
+            return View();
         }
 
 
-        public string Welcome(string name, int numTimes = 1)
+        public IActionResult Welcome(string name, int numTimes = 1)
+        {
+            ViewData["Message"] = "Hello " + name;
+            ViewData["NumTimes"] = numTimes;
+
+            return View();
+        }
+
+
+        public string Welcome1(string name, int numTimes = 1)
         {
             return
                 HtmlEncoder.Default.Encode($"Hello {name}, numTimes: {numTimes}. Current Date Time is : {DateTime.Now}");
