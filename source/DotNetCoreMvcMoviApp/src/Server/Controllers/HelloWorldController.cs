@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,9 +18,16 @@ namespace Server.Controllers
         }
 
 
-        public string Welcome()
+        public string Welcome(string name, int numTimes = 1)
         {
-            return "This is the welcome action method....";
+            return
+                HtmlEncoder.Default.Encode($"Hello {name}, numTimes: {numTimes}. Current Date Time is : {DateTime.Now}");
+        }
+
+
+        public string Welcome2(string name, int ID = 1)
+        {
+            return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
         }
 
     }
